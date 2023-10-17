@@ -75,7 +75,7 @@ jobs:
             type=semver,pattern={{major}}
             type=sha            
       - name: Set up docker
-        run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" && brew install docker && brew install colima && colima start --cgroups-v2
+        run: brew update && brew install docker && brew upgrade colima && colima start --cgroups-v2
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3

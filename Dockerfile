@@ -1,11 +1,17 @@
-FROM node:16
+FROM node:16 AS builder
+LABEL stage=nodebuilder
 
-WORKDIR /app
+WORKDIR /build
 
-COPY . /app
-
+ADD package.json .
+ADD package-lock.json .
 RUN npm install
+COPY . .
+RUN npm run build
 
-EXPOSE 8088
 
-CMD ["npm", "run", "dev"]
+FROM nginx:alpine
+LABEL stage=release
+
+COPY --from=builder /build/dist/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/conf.d/default.conf

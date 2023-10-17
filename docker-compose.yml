@@ -1,0 +1,14 @@
+version: '3'
+services:
+  plantuml-server:
+    image: plantuml/plantuml-server:jetty
+    ports:
+      - "8301:8080"
+    restart: unless-stopped
+  plantuml-editor:
+    image: dfface/plantuml-editor2:main
+    ports:
+      - "8300:80"
+    restart: unless-stopped
+    depends_on:
+      - plantuml-server

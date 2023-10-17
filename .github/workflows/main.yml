@@ -52,7 +52,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
   docker-macos:
-    runs-on: macos-arm64
+    runs-on: macos-latest-xlarge
     steps:
       -
         name: Checkout

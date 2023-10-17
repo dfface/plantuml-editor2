@@ -75,7 +75,7 @@ jobs:
             type=semver,pattern={{major}}
             type=sha            
       - name: Set up docker
-        run: brew install docker && colima start
+        run: brew install docker && brew install colima && colima start --cgroups-v2
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
